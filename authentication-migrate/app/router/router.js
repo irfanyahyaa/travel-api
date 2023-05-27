@@ -1,7 +1,7 @@
-const verifySignUpController = require("../api").verifySignUp;
-const verifySignController = require("../api").verifySign;
-const statusController = require("../api").status;
-const verifyJwtTokenController = require("../api").verifyJwtToken;
+const verifySignUpController = require("../controllers").verifySignUp;
+const verifySignController = require("../controllers").verifySign;
+const statusController = require("../controllers").status;
+const verifyJwtTokenController = require("../controllers").verifyJwtToken;
 
 module.exports = function (app) {
   //User Auth
@@ -11,7 +11,9 @@ module.exports = function (app) {
       verifySignUpController.checkDuplicateUserNameOrEmail,
       verifySignUpController.checkRolesExisted,
     ],
-    verifySignController.signup
+      (req, res) => {
+        verifySignController.signup(req, res);
+    }
   );
 
   app.post("/api/auth/signin", verifySignController.signin);
