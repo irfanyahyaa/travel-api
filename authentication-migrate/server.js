@@ -36,24 +36,25 @@ app.use((req, res, next) => {
 
 require("./app/router/router.js")(app);
 
-db.sequelize.sync().then(() => {
-  // create_roles();
-  app.listen(port, () => console.log(title + " run on " + baseUrl));
-});
+app.listen(port, () => console.log(title + " run on " + baseUrl));
 
-function create_roles() {
-  db.role.create({
-    id: 1,
-    name: "USER",
-  });
+// db.sequelize.sync().then(() => {
+//   create_roles();
+// });
 
-  db.role.create({
-    id: 2,
-    name: "ADMIN",
-  });
+// function create_roles() {
+//   db.role.create({
+//     id: 1,
+//     name: "USER",
+//   });
 
-  db.role.create({
-    id: 3,
-    name: "PM",
-  });
-}
+//   db.role.create({
+//     id: 2,
+//     name: "ADMIN",
+//   });
+
+//   db.role.create({
+//     id: 3,
+//     name: "PM",
+//   });
+// }
