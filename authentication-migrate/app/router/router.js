@@ -9,10 +9,10 @@ module.exports = function (app) {
     "/api/auth/signup",
     [
       verifySignUpController.checkDuplicateUserNameOrEmail,
-      verifySignUpController.checkRolesExisted,
+      verifySignUpController.checkRolesExisted
     ],
-      (req, res) => {
-        verifySignController.signup(req, res);
+    (req, res) => {
+      verifySignController.signup(req, res);
     }
   );
 

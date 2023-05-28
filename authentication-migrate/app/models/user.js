@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -12,8 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     // Method 'associate' digunakan untuk men-define relasi antar tabel
     static associate(models) {
       // define association here
+      User.belongsTo(models.Status);
+      User.belongsToMany(models.Role, {
+        through: "user_roles",
+      });
     }
   }
+
   User.init(
     {
       id: {
