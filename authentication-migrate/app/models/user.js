@@ -10,10 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     // Method 'associate' digunakan untuk men-define relasi antar tabel
     static associate(models) {
       // define association here
-      User.belongsTo(models.Status);
-      User.belongsToMany(models.Role, {
-        through: "user_roles",
+      User.belongsTo(models.Status, {
+        foreignKey: "statusId",
       });
+      // User.belongsToMany(models.Role, {
+      //   through: "user_roles",
+      // });
     }
   }
 
@@ -23,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         primaryKey: true,
       },
+      statusId: DataTypes.UUID,
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
