@@ -13,9 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsTo(models.Status, {
         foreignKey: "statusId",
       });
-      // User.belongsToMany(models.Role, {
-      //   through: "user_roles",
-      // });
+      User.belongsToMany(models.Role, {
+        through: "userRoles",
+      });
     }
   }
 
