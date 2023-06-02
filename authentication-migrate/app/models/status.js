@@ -10,7 +10,11 @@ module.exports = (sequelize, DataTypes) => {
     // Method 'associate' digunakan untuk men-define relasi antar tabel
     static associate(models) {
       // define association here
-      Status.hasMany(models.User);
+      Status.hasMany(models.User, {
+        foreignKey: "userId",
+        onDelete: "CASCADE",
+        onUpdate: "RESTRICT",
+      });
     }
   }
 

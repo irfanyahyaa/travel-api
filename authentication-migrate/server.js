@@ -18,7 +18,7 @@ app.use(express.static("app/public"));
 
 //Set app config
 const title = process.env.TITLE;
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 const baseUrl = process.env.URL + port;
 
 app.use((req, res, next) => {

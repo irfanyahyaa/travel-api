@@ -16,33 +16,47 @@ module.exports = function (app) {
     }
   );
 
-  app.post("/api/auth/signin", verifySignController.signin);
+  app.post("/api/auth/signin", (req, res) => {
+    verifySignController.signin(req, res);
+  });
 
   //Status
-  app.get("/api/status", statusController.list);
+  app.get("/api/status", (req, res) => {
+    statusController.list(req, res);
+  });
   app.get(
     "/api/statususer",
     [verifyJwtTokenController.verifyToken],
-    statusController.listStatusUser
+    (req, res) => {
+      statusController.listStatusUser(req, res);
+    }
   );
   app.get(
     "/api/status/:id",
     [verifyJwtTokenController.verifyToken, verifyJwtTokenController.isAdmin],
-    statusController.getById
+    (req, res) => {
+      statusController.getById(req, res);
+    }
   );
   app.post(
     "/api/status",
     [verifyJwtTokenController.verifyToken, verifyJwtTokenController.isAdmin],
-    statusController.add
+    (req, res) => {
+      statusController.add(req, res);
+    }
   );
   app.put(
     "/api/status/:id",
     [verifyJwtTokenController.verifyToken, verifyJwtTokenController.isAdmin],
-    statusController.update
+    (req, res) => {
+      statusController.update(req, res);
+    }
   );
   app.delete(
     "/api/status/:id",
     [verifyJwtTokenController.verifyToken, verifyJwtTokenController.isAdmin],
-    statusController.delete
+    (req, res) => {
+      statusController.delete(req, res);
+    }
   );
 };
