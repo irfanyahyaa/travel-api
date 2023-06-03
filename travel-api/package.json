@@ -12,11 +12,13 @@
     "mysql2": "^3.3.3",
     "sequelize": "^6.31.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "sequelize-cli": "^6.6.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Irfan Yahya",
   "license": "ISC",
   "description": ""
 }
