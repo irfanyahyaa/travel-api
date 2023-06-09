@@ -1,7 +1,5 @@
 const path = require('path');
 
-// Konfigurasi path 
-// Ketika mengeksekusi command 'npx sequelize-cli init', maka sequelize akan generate folder dan file sesuai dengan modul dibawah
 module.exports = {
   "config": path.resolve('./app/config', 'configDatabase.json'),
   "models-path": path.resolve('./app/models'),

@@ -1,5 +1,7 @@
-"use strict";
-const { Model } = require("sequelize");
+'use strict';
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -7,32 +9,24 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    // Method 'associate' digunakan untuk men-define relasi antar tabel
     static associate(models) {
       // define association here
-      User.belongsTo(models.Status);
-      User.belongsToMany(models.Role, {
-        through: "userRoles",
-        foreignKey: "userId",
+      // User.hasOne(models.Status); // Kenapa setelah dihilangkan, endpoint /api/status tidak error?
+      this.belongsToMany(models.Role, {
+        through: 'userRoles',
+        foreignKey: 'userId',
+        otherKey: 'roleId'
       });
     }
   }
-
-  User.init(
-    {
-      id: {
-        type: DataTypes.STRING,
-        primaryKey: true,
-      },
-      statusId: DataTypes.UUID,
-      name: DataTypes.STRING,
-      email: DataTypes.STRING,
-      password: DataTypes.STRING,
-    },
-    {
-      sequelize,
-      modelName: "User",
-    }
-  );
+  User.init({
+    name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    alamat: DataTypes.STRING,
+  }, {
+    sequelize,
+    modelName: 'User',
+  });
   return User;
 };
