@@ -9,7 +9,9 @@ const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/configDatabase.json")[env];
 const db = {};
 
+// fungsi sequelize connection
 let sequelize;
+// jika menggunakan file .env
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
@@ -18,9 +20,10 @@ if (config.use_env_variable) {
     config.username,
     config.password,
     config
-  );
+  ); /* jika tidak menggunakan file .env akan diarahkan ke file configDatabase.json */
 }
 
+// fungsi proses pembacaan file, yang ada di folder model
 fs.readdirSync(__dirname)
   .filter((file) => {
     return (
@@ -44,7 +47,7 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+db.sequelize = sequelize; // sequelize connection
+db.Sequelize = Sequelize; // sequelize module
 
 module.exports = db;

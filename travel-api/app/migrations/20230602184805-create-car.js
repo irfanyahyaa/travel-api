@@ -12,15 +12,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
-      ticketId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "tickets",
-          key: "id",
-        },
-        onDelete: "CASCADE",
-        onUpdate: "RESTRICT",
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

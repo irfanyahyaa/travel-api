@@ -9,14 +9,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsToMany(models.Role, {
+        through: "userRoles",
+        foreignKey: "userId",
+        otherKey: 'roleId'
+      });
+      this.belongsToMany(models.Ticket, {
+        through: "reservations",
+        foreignKey: "userId",
+        otherKey: 'ticketId'
+      });
+      
     }
   }
   User.init(
     {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-      },
+      // id: {
+      //   type: DataTypes.INTEGER,
+      //   primaryKey: true,
+      // },
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,

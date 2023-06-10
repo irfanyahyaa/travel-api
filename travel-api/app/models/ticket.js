@@ -9,6 +9,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Ticket.belongsTo(models.Car, {
+        foreignKey: 'carId',
+        onDelete: 'CASCADE',
+        onUpdate: 'RESTRICT',
+      });
+      this.belongsToMany(models.User, {
+        through: "reservations",
+        foreignKey: "ticketId",
+        as: 'users'
+      });
     }
   }
   Ticket.init(
@@ -19,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       name: DataTypes.STRING,
       destination: DataTypes.STRING,
-      orderDate: DataTypes.DATEONLY,
+      date: DataTypes.DATEONLY,
     },
     {
       sequelize,

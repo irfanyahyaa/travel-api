@@ -15,7 +15,7 @@ module.exports = {
                     auth: false,
                     name: req.body.name,
                     message: "Error",
-                    errors: "Id is already taken!"
+                    errors: "Name is already taken!"
                 });
                 return;
             }

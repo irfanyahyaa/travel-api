@@ -15,6 +15,15 @@ module.exports = {
       destination: {
         type: Sequelize.STRING,
       },
+      carId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "cars",
+          key: "id",
+        },
+        onDelete: "CASCADE",
+        onUpdate: "RESTRICT",
+      },
       orderDate: {
         type: Sequelize.DATEONLY,
       },

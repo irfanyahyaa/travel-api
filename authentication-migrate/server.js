@@ -33,7 +33,6 @@ app.use((req, res, next) => {
     next();
 });
 
-
 require('./app/router/router.js')(app);
 
 app.listen(port, () => console.log("server run on " + port))
