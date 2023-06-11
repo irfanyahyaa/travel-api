@@ -1,4 +1,5 @@
 "use strict";
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -15,6 +16,9 @@ module.exports = {
       destination: {
         type: Sequelize.STRING,
       },
+      date: {
+        type: Sequelize.DATEONLY,
+      },
       carId: {
         type: Sequelize.INTEGER,
         references: {
@@ -23,9 +27,6 @@ module.exports = {
         },
         onDelete: "CASCADE",
         onUpdate: "RESTRICT",
-      },
-      orderDate: {
-        type: Sequelize.DATEONLY,
       },
       createdAt: {
         allowNull: false,
