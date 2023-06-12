@@ -1,9 +1,9 @@
-const ticket = require('../models').Ticket;
+const reservation = require('../models').Reservation;
 
 module.exports = {
 
     getById(req, res) {
-      return ticket
+      return reservation
         .findByPk(req.params.id, {
           include: [],
         })
@@ -30,7 +30,7 @@ module.exports = {
     },
   
     list(req, res) {
-      return ticket.findAll({
+      return reservation.findAll({
           limit: 10,
           include: [],
           order: [
@@ -57,7 +57,7 @@ module.exports = {
     },
   
     listStatusUser(req, res) {
-      return ticket
+      return reservation
         .findAll({
           limit: 10,
           include: [],
@@ -88,12 +88,14 @@ module.exports = {
     },
   
     add(req, res) {
-      return ticket
+      return reservation
         .create({
           user_id: req.userId,
           name: req.body.name,
           destination: req.body.destination,
           date: req.body.date,
+          carName: req.body.carName,
+          passenger: req.body.passenger
         })
         .then((doc) => {
           const status = {
@@ -112,7 +114,7 @@ module.exports = {
     },
   
     update(req, res) {
-      return ticket
+      return reservation
         .findByPk(req.params.id, {})
         .then(status => {
           if (!status) {
@@ -129,7 +131,7 @@ module.exports = {
             });
           }
   
-          return ticket
+          return reservation
             .update({
               title: req.body.title || status.title,
               body: req.body.body || status.body
@@ -158,7 +160,7 @@ module.exports = {
     },
   
     delete(req, res) {
-      return ticket
+      return reservation
         .findByPk(req.params.id)
         .then(status => {
           if (!status) {
@@ -175,7 +177,7 @@ module.exports = {
             });
           }
   
-          return ticket
+          return reservation
             .destroy()
             .then(() => res.status(204).send({
               status_response: 'No Content',

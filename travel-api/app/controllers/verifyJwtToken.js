@@ -39,7 +39,7 @@ module.exports = {
 
     isAdmin(req, res, next) {
 		User.findByPk(req.userId)
-			.then(user => {
+            .then(user => {
 				user.getRoles().then(roles => {
 					for (let i = 0; i < roles.length; i++) {
 						console.log(roles[i].name);
