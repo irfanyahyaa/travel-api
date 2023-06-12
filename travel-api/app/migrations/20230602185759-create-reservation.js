@@ -9,15 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'users',
-          key: 'id'
-        },
-        onDelete: 'CASCADE',
-        onUpdate: 'RESTRICT'
-      },
       name: {
         type: Sequelize.STRING
       },
@@ -32,6 +23,15 @@ module.exports = {
       },
       passenger: {
         type: Sequelize.INTEGER
+      },
+      user_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'RESTRICT'
       },
       createdAt: {
         allowNull: false,

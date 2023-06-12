@@ -20,13 +20,13 @@ module.exports = function (app) {
 	});
 	
 	//Reservation
-	app.get('/api/status', (req, res) => {
+	app.get('/api/reservation', (req, res) => {
 		reservationController.list(req, res);
 	});
-	app.get('/api/statususer', [verifyJwtTokenController.verifyToken], (req, res) => {
+	app.get('/api/reservationuser', [verifyJwtTokenController.verifyToken], (req, res) => {
 		reservationController.listStatusUser(req, res);
 	});
-	app.get('/api/status/:id',
+	app.get('/api/reservation/:id',
 		[
 			verifyJwtTokenController.verifyToken,
 			verifyJwtTokenController.isAdmin
@@ -42,7 +42,7 @@ module.exports = function (app) {
 		(req, res) => {
 			reservationController.add(req, res);
 		});
-	app.put('/api/status/:id',
+	app.put('/api/reservation/:id',
 		[
 			verifyJwtTokenController.verifyToken,
 			verifyJwtTokenController.isAdmin
@@ -50,7 +50,7 @@ module.exports = function (app) {
 		(req, res) => {
 			reservationController.update(req, res);
 		});
-	app.delete('/api/status/:id',
+	app.delete('/api/reservation/:id',
 		[
 			verifyJwtTokenController.verifyToken,
 			verifyJwtTokenController.isAdmin
